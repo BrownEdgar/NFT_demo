@@ -14,13 +14,14 @@ const initialValues = {
 }
 
 export default function MainForm() {
+
   const handleSubmit = (values, formik) => {
 
     values.inStoke = values.inStoke ? values.inStoke : true;
 
     axios.post("http://localhost:3000/products", values,)
       .then(res => console.log(res))
-      .then(() => window.location.reload())
+
       .catch(err => console.log(err))
       .finally(() => {
         formik.resetForm()

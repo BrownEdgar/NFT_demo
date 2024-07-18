@@ -74,3 +74,16 @@ nav {
 .nav-connect-button:active {
   transform: scale(0.95);
 }
+
+.nav__button {
+  background-color: #1e3799;
+  color: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+
+  &+& {
+    margin-left: 12px;
+  }
+}

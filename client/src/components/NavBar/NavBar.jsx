@@ -13,8 +13,18 @@ const NavBar = () => {
             <NavLink to="/add">Add Product</NavLink>
           </li>
           <li>
-            <NavLink to="/sign-up">sign up</NavLink>
+            <NavLink
+              to="/sign-up"
+              className={'nav__button'}>
+              sign up
+            </NavLink>
+            <NavLink
+              to="/sign-in"
+              className={'nav__button'}>
+              Login
+            </NavLink>
           </li>
+
         </ul>
       </nav>
     </header>

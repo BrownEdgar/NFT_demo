@@ -1,0 +1,18 @@
+.SignUp {
+  form {
+    input {
+      background-color: rgba(0, 0, 0, 0.7);
+      border: 1px solid grey;
+      border-radius: 6px;
+      color: rgb(188, 188, 32);
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    label {
+      font-size: 22px;
+    }
+  }
+}
