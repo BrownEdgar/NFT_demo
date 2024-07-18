@@ -11,7 +11,7 @@ class ProductsService {
 
   async addProduct(product) {
     console.log('product', product)
-    const result = new this.models.products({ ...product });
+    const result = new this.models.products({ ...product, userId: 1 });
     await result.save();
     return result
   }

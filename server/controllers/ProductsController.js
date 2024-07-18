@@ -21,6 +21,7 @@ class ProductsController {
   }
   async addProduct(req, res) {
     const { body: product } = req;
+    console.log('product', product)
     try {
       const result = await req.app.services.products.addProduct(product);
       res.json(result)

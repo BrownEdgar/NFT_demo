@@ -37,26 +37,6 @@ app.services = {
   products: new ProductsService(app.models),
 }
 
-const checkToken = (req, res, next) => {
-  const token = req?.headers['authorization']
-
-  if (!token) {
-    res.json("no token")
-    return;
-  } else {
-    console.log(2222)
-    try {
-      const isValid = jwt.verify(token, process.env.SECRET_TOKEN);
-      console.log("isValid", isValid);
-      next()
-    } catch (error) {
-      res.status(500).json({ message: 'invalid token' });
-    }
-
-  }
-
-}
-app.use(checkToken)
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

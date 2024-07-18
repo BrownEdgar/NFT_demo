@@ -7,7 +7,6 @@ module.exports = function (sequelize) {
       primaryKey: true,
       autoIncrement: true,
     },
-
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -27,7 +26,6 @@ module.exports = function (sequelize) {
     }
   }, {
     sequelize,
-    freezeTableName: true,
     timestamps: false,
   })
 }

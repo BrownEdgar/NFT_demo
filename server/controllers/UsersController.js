@@ -18,6 +18,18 @@ class UserController {
       res.json(error)
     }
   }
+  async signIn(req, res) {
+
+    const { body } = req;
+
+    try {
+      const token = await req.app.services.users.signIn(body);
+      res.json({ token })
+    } catch (error) {
+      console.log(error)
+      res.status(403).json({ error: error.message })
+    }
+  }
 }
 
 
