@@ -1,4 +1,4 @@
-
+import React, { useState, useEffect } from 'react';
 import Form from './components/Form/Form';
 import NavBar from "./components/NavBar/NavBar";
 import Home from './pages/Home/Home'
@@ -10,6 +10,12 @@ import "./App.css";
 
 function App() {
 
+  useEffect(() => {
+
+    return () => {
+      localStorage.removeItem('token')
+    }
+  }, [])
 
   return (
     <div className="App">

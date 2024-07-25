@@ -9,7 +9,17 @@ class UserController {
     }
   }
   async signUp(req, res) {
-    const body = req.body
+    let body = {}
+
+    if (req.user) {
+      body = {
+        name: req.user?.name.givenName,
+        password: Math.random().toString(36).slice(2, 10),
+        email: req.user.emails[0].value
+      }
+    } else {
+      body = req.body
+    }
     try {
       const token = await req.app.services.users.signUp(body);
       res.json({ token })

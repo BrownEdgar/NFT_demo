@@ -16,9 +16,6 @@ body {
 }
 
 form {
-  width: 600px;
-  padding: 1em;
-  margin: 20px auto;
 
   input, select {
     margin-bottom: 10px;

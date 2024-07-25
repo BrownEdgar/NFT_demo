@@ -1,6 +1,9 @@
 require('dotenv').config()
+require('./configs/passport_config')
 var cors = require('cors')
-var jwt = require('jsonwebtoken')
+const passport = require('passport');
+const expressSession = require('express-session');
+
 
 var createError = require('http-errors');
 var express = require('express');
@@ -17,9 +20,21 @@ var productsRouter = require('./routes/products');
 var app = express();
 const db = require('./utils/connection')
 
+const UserController = require('./controllers/UsersController');
+const controller = new UserController()
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.use(expressSession({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -39,8 +54,33 @@ app.services = {
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
 app.use('/products', productsRouter);
+
+app.get('/failed', (req, res) => {
+  res.send('Login Error')
+})
+
+app.get('/success', isLogin, (req, res) => {
+  console.log(`success`, req.session.user)
+  const username = req.session.user.displayName;
+  const photo = req.session.user.photos[0].value;
+  res.json({ username, photo })
+})
+
+
+app.get('/auth/google', passport.authenticate('google', { scope: ['email', 'profile'] }));
+
+app.get('/auth/google/callback',
+  passport.authenticate('google', {
+    failureRedirect: '/failed',
+  }),
+  controller.signUp);
+
+
+function isLogin(req, res, next) {
+  console.log("req.session.user ------------------> ", req.session.user);
+  req.session.user ? next() : res.sendStatus(401);
+}
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

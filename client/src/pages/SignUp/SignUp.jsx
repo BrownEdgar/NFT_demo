@@ -22,6 +22,12 @@ export default function SignUp() {
       })
       .catch(err => console.log(err))
   }
+
+  const handleGoogle = () => {
+    window.location.assign('http://localhost:3000/auth/google')
+
+  }
+
   return (
     <div className='SignUp'>
       <form onSubmit={handleSubmit}>
@@ -38,10 +44,11 @@ export default function SignUp() {
           <input type="password" id='password' />
         </div>
         <div>
-
           <input type="submit" value="Reginster" />
         </div>
       </form>
+      <button onClick={handleGoogle} className='google__btn'>Google</button>
+      <button onClick={handleGoogle} className='google__btn'>GitHub</button>
     </div>
   )
 }

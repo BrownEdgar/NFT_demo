@@ -1,10 +1,11 @@
 import React from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 import './SignIn.css'
 
 export default function SignIn() {
-
+  const navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault()
     const { email, password } = e.target;
@@ -18,11 +19,12 @@ export default function SignIn() {
       .then(res => {
         console.log(' res.data', res.data)
         localStorage.setItem('token', res.data.token);
+        navigate('/')
       })
       .catch(({ response }) => alert(response.data.error))
   }
   return (
-    <div className='SignUp'>
+    <div className='SignIn'>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="email">email</label>
