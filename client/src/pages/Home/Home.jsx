@@ -20,12 +20,9 @@ export default function Home() {
 
   const navigate = useNavigate()
   useEffect(() => {
-    console.log('token', token)
-    if (!token) {
-      navigate('/sign-in')
-    }
+    console.log(document.cookie)
 
-  }, [token])
+  }, [])
 
 
   useEffect(() => {

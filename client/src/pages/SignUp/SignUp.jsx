@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import './SignUp.css'
@@ -27,6 +27,15 @@ export default function SignUp() {
     window.location.assign('http://localhost:3000/auth/google')
 
   }
+  const handleGitHub = () => {
+
+    window.location.assign('http://localhost:3000/auth/github')
+
+
+  }
+
+
+
 
   return (
     <div className='SignUp'>
@@ -48,7 +57,7 @@ export default function SignUp() {
         </div>
       </form>
       <button onClick={handleGoogle} className='google__btn'>Google</button>
-      <button onClick={handleGoogle} className='google__btn'>GitHub</button>
+      <button onClick={handleGitHub} className='google__btn'>GitHub</button>
     </div>
   )
 }

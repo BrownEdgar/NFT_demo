@@ -1,5 +1,11 @@
 require('dotenv').config()
-require('./configs/passport_config')
+
+
+try {
+  require('./configs/passport_config')
+} catch (error) {
+  console.log('error', error)
+}
 var cors = require('cors')
 const passport = require('passport');
 const expressSession = require('express-session');
@@ -81,6 +87,16 @@ function isLogin(req, res, next) {
   console.log("req.session.user ------------------> ", req.session.user);
   req.session.user ? next() : res.sendStatus(401);
 }
+
+app.get('/auth/github',
+  passport.authenticate('github', { scope: ['user:email'] }));
+
+app.get('/auth/github/callback',
+  passport.authenticate('github',),
+  function (req, res) {
+    res.cookie("user", req.session.passport.user.username)
+    res.redirect('http://localhost:5173/');
+  });
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -47,7 +47,7 @@ export default function MainForm() {
             <option value="3dart">3dart</option>
             <option value="game">game</option>
             <option value="painting">painting</option>
-            <option value="wallart">wallart</option>
+            <option value="wall art">wallart</option>
             <option value="others">others</option>
           </Field>
           <input type="submit" value={"Add Product"} />
