@@ -9,7 +9,7 @@ try {
 var cors = require('cors')
 const passport = require('passport');
 const expressSession = require('express-session');
-
+const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
 
 var createError = require('http-errors');
 var express = require('express');
@@ -22,6 +22,7 @@ var ProductsService = require('../server/services/ProductsService');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
+var buyitemRouter = require('./routes/buyItem');
 
 var app = express();
 const db = require('./utils/connection')
@@ -52,7 +53,7 @@ app.models = {
   users: db.models.users,
   products: db.models.products,
 }
-
+app.stripe = stripe
 app.services = {
   users: new UserService(app.models),
   products: new ProductsService(app.models),
@@ -61,6 +62,7 @@ app.services = {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);
+app.use('/buyitem', buyitemRouter);
 
 app.get('/failed', (req, res) => {
   res.send('Login Error')
