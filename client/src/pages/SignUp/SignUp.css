@@ -7,10 +7,10 @@
     margin: 20px auto;
 
     input {
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: #122;
       border: 1px solid grey;
       border-radius: 6px;
-      color: rgb(188, 188, 32);
+      color: white;
 
       &:focus {
         outline: none;
@@ -22,14 +22,39 @@
     }
   }
 
-  .google__btn {
-    padding: 1rem;
-    cursor: pointer;
-    font-size: 22px;
-    background-color: rgb(34, 64, 170);
-    color: #fff;
-    border: 0;
-    width: 100%;
-    margin-bottom: 10px;
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 12px;
+
+    .btn {
+      padding: 1rem;
+      cursor: pointer;
+      border-radius: 6px;
+      border: 1px solid #888;
+      flex-grow: 1;
+      font-size: 24px;
+      background-color: #222;
+      color: #fff;
+
+      width: 100%;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      transition: 0.2s;
+
+      svg {
+        font-size: 30px;
+      }
+
+      &:hover {
+        color: aqua;
+        scale: 1.03;
+        box-shadow: rgba(18, 155, 98, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+      }
+    }
   }
 }

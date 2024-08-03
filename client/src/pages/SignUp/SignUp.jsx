@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { FaGithub } from "react-icons/fa";
+import { AiFillGoogleCircle } from "react-icons/ai";
 import './SignUp.css'
 
 export default function SignUp() {
@@ -28,14 +30,8 @@ export default function SignUp() {
 
   }
   const handleGitHub = () => {
-
     window.location.assign('http://localhost:3000/auth/github')
-
-
   }
-
-
-
 
   return (
     <div className='SignUp'>
@@ -56,8 +52,15 @@ export default function SignUp() {
           <input type="submit" value="Reginster" />
         </div>
       </form>
-      <button onClick={handleGoogle} className='google__btn'>Google</button>
-      <button onClick={handleGitHub} className='google__btn'>GitHub</button>
+      <div className="buttons">
+        <button onClick={handleGoogle} className=' btn google__btn'>
+          <AiFillGoogleCircle />
+          Google
+        </button>
+        <button onClick={handleGitHub} className=' btn google__btn'>
+          <FaGithub /> Github
+        </button>
+      </div>
     </div>
   )
 }

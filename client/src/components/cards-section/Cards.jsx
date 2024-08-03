@@ -1,10 +1,16 @@
-
-
+import axios from 'axios'
 
 import "./cards.css";
 
 const Cards = ({ products, loading }) => {
-  console.log(loading)
+
+  const handleClick = (id) => {
+    axios.post('http://localhost:3000/buyItem', { productId: id })
+      .then(res => {
+        window.location = res.data.url
+      })
+      .catch(err => console.log(err))
+  }
 
   return (
     <div className="cards">
@@ -22,6 +28,7 @@ const Cards = ({ products, loading }) => {
                 <h3 className="product-title">{product.title}</h3>
                 <p className="price">price:-</p>
                 <p className="product-price">{product.price}</p>
+                <button className='btn' onClick={() => handleClick(product.id)}>buy</button>
               </div>
             </div>
           );
